@@ -1,58 +1,34 @@
-/*
-  * @package 
-  * @subpackage template name HTML
-  * 
-  * Template Scripts
-  * Created by themeturn
-  
-  1. Fixed header
-  2. Site search
-  3. Main slideshow
-  4. Owl Carousel
-      a. Testimonial
-      b. Clients
-      c. Team
-  5. Back to top
-  6. Skills
-  7. BX slider
-      a. Blog Slider
-      b. Portfolio item slider
-  8. Isotope
-  9. Animation (wow)
-  10. Flickr
-  
-*/
+// to get current year
+function getYear() {
+    var currentDate = new Date();
+    var currentYear = currentDate.getFullYear();
+    document.querySelector("#displayYear").innerHTML = currentYear;
+}
 
+getYear();
 
-jQuery(function($) {
-  "use strict";
-
-   $('.navigation').singlePageNav({
-        currentClass: 'active',
-        changeHash: true,
-        scrollSpeed: 750,
-        offset: 0,
-        filter: ':not(.external)',
-        easing: 'swing',
-
+// map form show
+if (document.querySelector("#showMap")) {
+    document.querySelector("#showMap").addEventListener("click", function (e) {
+        e.preventDefault();
+        $(".map_form_container").addClass("map_show");
+        document.querySelector(".contact_heading").innerText = "Location";
     });
-
-    $.noConflict();
-     $('.nav a').on('click', function(){ 
-        if($('.navbar-toggle').css('display') !='none'){
-            $(".navbar-toggle").trigger( "click" );
-        }
+}
+if (document.querySelector("#showForm")) {
+    document.querySelector("#showForm").addEventListener("click", function (e) {
+        e.preventDefault();
+        $(".map_form_container").removeClass("map_show");
+        document.querySelector(".contact_heading").innerText = "Contact Us";
     });
+}
 
+/** google_map js **/
+function myMap() {
+    var mapProp = {
+        center: new google.maps.LatLng(40.712775, -74.005973),
+        zoom: 18,
+    };
+    var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+}
 
- 
-// prettyphoto
-
- $("a[data-rel^='prettyPhoto']").prettyPhoto();
- 
-    
- 
-
-
-
-});
